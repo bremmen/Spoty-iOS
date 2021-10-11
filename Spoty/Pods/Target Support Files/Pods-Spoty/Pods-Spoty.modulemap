@@ -1,0 +1,6 @@
+framework module Pods_Spoty {
+  umbrella header "Pods-Spoty-umbrella.h"
+
+  export *
+  module * { export * }
+}
