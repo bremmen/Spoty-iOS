@@ -34,9 +34,6 @@ class ArtistDetailViewController: UIViewController {
 
     @IBOutlet weak var genresLabel: UILabel!{
         didSet{
-
-            guard let genres = viewModel.artist.genres else { return }
-            genresLabel.text = getGenres(genres: genres)
             genresLabel.textColor = .white
             genresLabel.font = .boldSystemFont(ofSize: 12)
         }
@@ -101,6 +98,12 @@ class ArtistDetailViewController: UIViewController {
         view.backgroundColor = .blackSpoty
         tableview.backgroundColor = .greenSpoty
         setupImage()
+        guard let genres = viewModel.artist.genres else { return }
+        if genres.count == 1 {
+            genresLabel.text = genres[0]
+        } else {
+            genresLabel.text = self.getGenres(genres: genres)
+        }
     }
 
     private func setupImage(){
@@ -113,11 +116,9 @@ class ArtistDetailViewController: UIViewController {
     }
 
     private func getGenres(genres: [String]) -> String {
-        let length = genres.count - 1
-        if length < 0 { return ""}
         var genreText = "Genres: "
-        for i in 1...length {
-            if !(i == length){
+        for i in 1..<genres.count {
+            if !(i == genres.count){
                 genreText += genres[i] + ", "
             } else {
                 genreText += genres[i] + "."
