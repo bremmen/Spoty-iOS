@@ -10,4 +10,4 @@
 - SVProgressHUD 
 
 **API:**
-- Sporify
+- Spotify
